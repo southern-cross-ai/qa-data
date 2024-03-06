@@ -5,10 +5,15 @@ on:
     types: [ assigned, opened, synchronize, reopened ]
     branches:
       - main
+    paths:
+      - 'fine-tuning-commit/**'
+      - 'fine-tuning-data/**'
   push:
     branches:
       - main
-      -
+    paths:
+      - 'fine-tuning-commit/**'
+      - 'fine-tuning-data/**'
 jobs:
   check :
     runs-on: ubuntu-latest
@@ -27,7 +32,7 @@ jobs:
         python .ci/check.py
 
 
-        
+
     - name: Configure Git credentials
       run: |
         git config user.name ${{ secrets.GIT_USER }}
