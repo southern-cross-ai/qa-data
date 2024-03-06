@@ -1,1 +1,25 @@
+name: Check & Merge Prompt
+
+on:
+  pull_request_target:
+    types: [ assigned, opened, synchronize, reopened ]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      -
+jobs:
+  check :
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # Check out the full commit history
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
 
