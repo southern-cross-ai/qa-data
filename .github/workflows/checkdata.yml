@@ -34,7 +34,7 @@ jobs:
 
     - name: generate data
       run: python .ci/Generate_fine_tuning_data.py
-      
+
     - name: upload json
       uses: actions/upload-artifact@v2
       with:
