@@ -32,6 +32,12 @@ jobs:
       run: |
         python .ci/check.py
 
+    - name: upload json
+      uses: actions/upload-artifact@v2
+      with:
+        name: upload_json
+        path: fine-tuning-data
+
     - name: Configure Git credentials
       run: |
         git config user.name ${{ secrets.GIT_USER }}

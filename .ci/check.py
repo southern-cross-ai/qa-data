@@ -1,7 +1,11 @@
 import re
 import os
 import sys
-
+'''
+# @author  : Shiqiding
+# @description: This script is used to check that the submitted markdown file conforms to the template's requirements
+# @version : V1.0
+'''
 
 def check_prompt(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
