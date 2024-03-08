@@ -1,4 +1,6 @@
-name: Check & Merge Prompt
+name: Check & Merge
+
+permissions: write-all
 
 on:
   pull_request_target:
@@ -23,6 +25,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0 # Check out the full commit history
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -46,11 +49,8 @@ jobs:
         git config user.name ${{ secrets.GIT_USER }}
         git config user.email ${{ secrets.GIT_EMAIL }}
 
-    - name: Push changes
-      env:
-        PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    - name: Commit and push changes
       run: |
-        git remote set-url origin https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git add .
-        git commit -m "Auto commit"
-        git push origin HEAD:main --force
+        git commit -m "Auto commit after PR merge"
+        git push
