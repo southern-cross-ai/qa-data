@@ -1,0 +1,26 @@
+[
+  {
+    "conversation": [
+      {
+        "input": "Recommendations for what to eat in Australia in the summer",
+        "output": "Enjoy fresh seafood like prawns, barramundi, and Sydney rock oysters, perfect for a vibrant Aussie summer."
+      }
+    ]
+  },
+  {
+    "conversation": [
+      {
+        "input": "Do you have any speciality food in Australia?",
+        "output": "Indulge in Kangaroo steak or damper, traditional Australian specialties offering unique flavors and experiences."
+      }
+    ]
+  },
+  {
+    "conversation": [
+      {
+        "input": "What's better to eat in Australia in winter",
+        "output": "Warm up with hearty dishes like kangaroo stew, lamb roast, or a comforting bowl of pumpkin soup."
+      }
+    ]
+  }
+]
