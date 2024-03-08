@@ -31,7 +31,9 @@ jobs:
       run: |
         python .ci/check.py
 
-
+    - name: check the prompt
+      run: |
+        python .ci/check.py
 
     - name: Configure Git credentials
       run: |
