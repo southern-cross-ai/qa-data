@@ -10,7 +10,7 @@ def extract_content(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
 
-    pattern = r'#Eg\n(## Q\n.*?\n## A\n.*?\n)'
+    pattern = r'# Eg\n(## Q\n.*?\n## A\n.*?\n)'
     matches = re.findall(pattern, content, re.DOTALL)
 
     data = []
