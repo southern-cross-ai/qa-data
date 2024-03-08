@@ -46,8 +46,11 @@ jobs:
         git config user.name ${{ secrets.GIT_USER }}
         git config user.email ${{ secrets.GIT_EMAIL }}
 
-    - name: Commit and push changes
+    - name: Push changes
+      env:
+        PERSONAL_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
+        git remote set-url origin https://x-access-token:${PERSONAL_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git add .
-        git commit -m "Auto commit after PR merge"
-        git push
+        git commit -m "Auto commit"
+        git push origin HEAD:main --force
