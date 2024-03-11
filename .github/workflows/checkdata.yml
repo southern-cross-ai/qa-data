@@ -1,10 +1,8 @@
 name: Check & Merge
-
 permissions: write-all
-
 on:
   pull_request_target:
-    types: [ assigned, opened, synchronize, reopened ]
+    types: [assigned, opened, synchronize, reopened]
     branches:
       - main
     paths:
@@ -17,40 +15,42 @@ on:
       - 'fine-tuning-commit/**'
       - 'fine-tuning-data/**'
 jobs:
-  check :
+  check:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0 # Check out the full commit history
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Check out the full commit history
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
 
-    - name: check the prompt
-      run: |
-        python .ci/check.py
+      - name: check the prompt
+        run: |
+          python .ci/check.py
 
-    - name: generate data
-      run: python .ci/Generate_fine_tuning_data.py
+      - name: generate data
+        run: python .ci/Generate_fine_tuning_data.py
 
-    - name: upload json
-      uses: actions/upload-artifact@v2
-      with:
-        name: upload_json
-        path: fine-tuning-data
+      - name: upload json
+        uses: actions/upload-artifact@v2
+        with:
+          name: upload_json
+          path: fine-tuning-data
 
-    - name: Configure Git credentials
-      run: |
-        git config user.name ${{ secrets.GIT_USER }}
-        git config user.email ${{ secrets.GIT_EMAIL }}
+      - name: Configure Git credentials
+        run: |
+          git config user.name ${{ secrets.GIT_USER }}
+          git config user.email ${{ secrets.GIT_EMAIL }}
 
-    - name: Commit and push changes
-      run: |
-        git add .
-        git commit -m "Auto commit after PR merge"
-        git push
+      - name: Check for changes
+        run: |
+          git diff-index --quiet HEAD || echo "Changes detected"
+          git add .
+
+      - name: Commit and push changes
+        run: |
+          git diff-index --quiet HEAD || git commit -m "Auto commit after PR merge" && git push
