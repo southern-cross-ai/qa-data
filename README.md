@@ -1,4 +1,4 @@
-# southern-cross-ai-data
+# open-australian-qa-data
 
 This github repository collects prompt and fine-tuning data about Australian culture from all over the universe!
 
