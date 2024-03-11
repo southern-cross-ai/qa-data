@@ -38,14 +38,16 @@ def check_prompt(file_path):
                 # If the format is correct, the counter adds 1
                 valid_eg_count += 1
             else:
+                print(f"The error is in the {file_path}")
                 print(f"Invalid question and answer format. A pair of ## Q ## A tags was not found in the {valid_eg_count+1}th #Eg tag.")
-                return False
+                sys.exit(1)
 
         print(f"\n Total of {valid_eg_count} valid #Eg examples found.")
 
     else:
+        print(f"The error is in the {file_path}")
         print("Invalid prompt format. The # Prompt tag was not found.")
-        return False
+        sys.exit(1)
 
 
 
@@ -56,9 +58,8 @@ def check_all_prompts(folder_path='fine-tuning-commit'):
     # Loop through each .md file and check the prompt
     for md_file in md_files:
         file_path = os.path.join(folder_path, md_file)
-        if check_prompt(file_path)==False:
-            print(f"The error is in the {md_file}")
-            sys.exit(1)
+        check_prompt(file_path)
+
     print("All files are formatted correctly")
 # Call the function with the specified folder path
 check_all_prompts()
